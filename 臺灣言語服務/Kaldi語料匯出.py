@@ -93,13 +93,13 @@ class Kaldi語料匯出(程式腳本):
                 聲韻陣列 = []
                 for 字物件 in 詞物件.轉音(音標系統, '音值').篩出字物件():
                     原聲, 韻, 調 = 字物件.音
-#                     聲 = 原聲 + '-'
-#                     聲韻陣列.append(聲)
-#                     if 加語料:
-#                         聲類.add(聲)
-#                     else:
-#                         if 聲 not in 聲類:
-#                             raise RuntimeError('語料無這个音')
+                    聲 = 原聲 + '-'
+                    聲韻陣列.append(聲)
+                    if 加語料:
+                        聲類.add(聲)
+                    else:
+                        if 聲 not in 聲類:
+                            raise RuntimeError('語料無這个音')
 #                     for 一个音素 in 漢語語音處理.切漢語韻(韻):
                     一个音素 = 原聲 + 韻
                     一个音素調 = 一个音素 + 調
