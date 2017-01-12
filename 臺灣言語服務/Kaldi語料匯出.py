@@ -92,17 +92,21 @@ class Kaldi語料匯出(程式腳本):
             try:
                 聲韻陣列 = []
                 for 字物件 in 詞物件.轉音(音標系統, '音值').篩出字物件():
+                    字物件聲韻陣列 = []
                     原聲, 韻, 調 = 字物件.音
                     聲 = 原聲 + '-'
                     聲韻陣列.append(聲)
+                    字物件聲韻陣列.append(聲)
                     if 加語料:
                         聲類.add(聲)
                     else:
                         if 聲 not in 聲類:
                             raise RuntimeError('語料無這个音')
                     for 一个音素 in 漢語語音處理.切漢語韻(韻):
+                        調 = 'X'
                         一个音素調 = 一个音素 + 調
                         聲韻陣列.append(一个音素調)
+                        字物件聲韻陣列.append(一个音素調)
                         if 加語料:
                             try:
                                 韻類[一个音素].add(一个音素調)
@@ -115,6 +119,8 @@ class Kaldi語料匯出(程式腳本):
                         else:
                             if 一个音素調 not in 韻類[一个音素] or 一个音素調 not in 調類[調]:
                                 raise RuntimeError('語料無這个韻抑是調')
+                    字物件.型 = 字物件.音
+                    一項 = '{}\t{}'.format(字物件.看分詞(), ' '.join(字物件聲韻陣列))
                 一項 = '{}\t{}'.format(分詞, ' '.join(聲韻陣列))
                 全部詞.add(一項)
             except:
