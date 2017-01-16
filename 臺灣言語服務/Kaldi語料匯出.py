@@ -124,6 +124,7 @@ class Kaldi語料匯出(程式腳本):
                                 raise RuntimeError('語料無這个韻抑是調')
                     原本字物件.型 = 原本字物件.音
                     一項 = '{}\t{}'.format(原本字物件.看分詞(), ' '.join(字物件聲韻陣列))
+                    全部詞.add(一項)
                 一項 = '{}\t{}'.format(分詞, ' '.join(聲韻陣列))
                 全部詞.add(一項)
             except:
